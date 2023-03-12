@@ -7,29 +7,24 @@ import java.util.Date;
 
 @Entity
 public class Member {
-
-    @Id
+    @Id @GeneratedValue
     private Long id;
-    @Column(name = "name")
+
+    @Column(name = "USERNAME")
     private String username;
 
-    private Integer age;
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
+//    @Column(name = "TEAM_ID")
+//    private Long teamId;
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+    public Team getTeam() {
+        return team;
+    }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
-
-    private LocalDate tsetLocalDate;
-    private LocalDateTime tsetLocalDateTime;
-
-    @Lob
-    private String description;
-    public Member() {
-
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public Long getId() {
@@ -46,45 +41,5 @@ public class Member {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public RoleType getRoleType() {
-        return roleType;
-    }
-
-    public void setRoleType(RoleType roleType) {
-        this.roleType = roleType;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

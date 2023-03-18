@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-public class Member {
+public class Member extends BaseEntity{
     @Id @GeneratedValue
     private Long id;
 
@@ -18,6 +18,14 @@ public class Member {
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
     private Team team;
+
+//    @OneToOne
+//    @JoinColumn(name = "LOCKER_ID")
+//    private Locker locker;
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
     public Team getTeam() {
         return team;
